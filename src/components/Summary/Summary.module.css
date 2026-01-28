@@ -1,0 +1,291 @@
+.container {
+    margin-top: 4rem;
+    padding-bottom: 5rem;
+}
+
+.fixSection {
+    margin-bottom: 4rem;
+}
+
+.sectionHeader {
+    margin-bottom: 2rem;
+}
+
+.sectionHeader h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sectionHeader p {
+    color: var(--text-muted);
+}
+
+.fixList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.fixCard {
+    padding: 2rem;
+}
+
+.fixMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.fixTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.riskBadge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    background: var(--bg-tertiary);
+}
+
+.riskBadge[data-risk="low"] {
+    color: #22c55e;
+}
+
+.riskBadge[data-risk="medium"] {
+    color: #eab308;
+}
+
+.riskBadge[data-risk="high"] {
+    color: #ef4444;
+}
+
+.cause {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.diffBlock {
+    background: #000;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+    overflow-x: auto;
+}
+
+.diffBlock code {
+    color: #a5b4fc;
+}
+
+.applyBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid var(--glass-border);
+}
+
+.applyBtn:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+}
+
+/* Modal Styles */
+.patchModalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.patchModalHeader {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.patchInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.patchIcon {
+    color: var(--accent-primary);
+}
+
+.patchInfo h4 {
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.patchInfo p {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.modalDiff {
+    background: #000;
+    padding: 1.25rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.modalDiff code {
+    color: #a5b4fc;
+}
+
+.statusSection {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+}
+
+.statusSection p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.statusLine,
+.successLine {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.statusLine {
+    color: var(--accent-primary);
+}
+
+.successLine {
+    color: #22c55e;
+}
+
+.spin {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modalApplyBtn {
+    padding: 0.75rem 1.5rem;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modalCloseBtn {
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid var(--glass-border);
+}
+
+/* Final Summary */
+.finalSummary {
+    margin-top: 5rem;
+}
+
+.summaryCard {
+    padding: 3rem;
+    border: 1px solid var(--accent-primary);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+}
+
+.summaryHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summaryIcon {
+    color: var(--accent-primary);
+}
+
+.summaryHeader h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.summaryHeader p {
+    color: var(--text-muted);
+}
+
+.summaryText {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+}
+
+.decisionGroup {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.approveBtn,
+.conditionalBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.approveBtn {
+    background: #22c55e;
+    color: white;
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2);
+}
+
+.conditionalBtn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+}
+
+.approveBtn:hover,
+.conditionalBtn:hover {
+    transform: translateY(-2px);
+}
