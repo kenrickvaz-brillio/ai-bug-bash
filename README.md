@@ -1,5 +1,6 @@
 # 🤖 Autonomous AI Bug Bash
 ### Next-Gen Quality Governance Demo
+**Live Demo:** [witty-desert-0c2235c1e.1.azurestaticapps.net](https://witty-desert-0c2235c1e.1.azurestaticapps.net)
 
 **Autonomous AI Bug Bash** is a high-fidelity, frontend-only demo that showcases a state-of-the-art AI agent designed for autonomous software testing, failure analysis, and patch generation. It simulates a complete quality governance lifecycle—from story analysis to final release approval—within a premium, interactive dashboard.
 
