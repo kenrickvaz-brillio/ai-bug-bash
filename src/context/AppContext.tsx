@@ -13,6 +13,7 @@ interface AppContextType {
     toggleTheme: () => void;
     session: BugBashSession | null;
     currentStory: Story;
+    setCurrentStory: (story: Story) => void;
     runSimulation: () => Promise<void>;
     resetSession: () => void;
 }
@@ -23,7 +24,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const [isExecView, setIsExecView] = useState(false);
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const [session, setSession] = useState<BugBashSession | null>(null);
-    const [currentStory] = useState<Story>(DEFAULT_STORY);
+    const [currentStory, setCurrentStory] = useState<Story>(DEFAULT_STORY);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -60,6 +61,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             toggleTheme,
             session,
             currentStory,
+            setCurrentStory,
             runSimulation,
             resetSession
         }}>

@@ -27,33 +27,35 @@ const getPriority = (h: number): Priority => {
 };
 
 export const simulateAgentRun = (story: Story): BugBashSession => {
-    const results: TestResult[] = TEST_SCENARIOS.map(scenario => {
-        const h = hash(scenario.id + story.id);
-        const status = getStatus(h);
+    const results: TestResult[] = TEST_SCENARIOS
+        .filter(scenario => scenario.storyId === story.id || (!scenario.storyId && story.id === 'map-list-sync')) // Fallback for backwards compatibility if needed
+        .map(scenario => {
+            const h = hash(scenario.id + story.id);
+            const status = getStatus(h);
 
-        return {
-            scenarioId: scenario.id,
-            status,
-            flakiness: (h % 15),
-            confidence: 85 + (h % 15),
-            steps: [
-                'Initialize map layer',
-                `Prepare ${scenario.category} test environment`,
-                'Perform interaction: ' + scenario.name,
-                'Wait for state synchronization'
-            ],
-            expected: 'System state should remain consistent and performant.',
-            actual: status === 'Pass'
-                ? 'State synchronized successfully.'
-                : `Detected inconsistency in ${scenario.category} layer. Expected response within 200ms, got ${400 + (h % 1000)}ms.`,
-            screenshots: [
-                `https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=300&h=200`,
-                `https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&q=80&w=300&h=200`
-            ],
-            diagnosis: status === 'Pass' ? 'No issues found.' : `AI detected a potential race condition in the ${story.components[h % story.components.length]}.`,
-            rationale: `Pattern analysis suggests that rapid ${scenario.category} triggers may lead to stale state in high-concurrency environments.`
-        };
-    });
+            return {
+                scenarioId: scenario.id,
+                status,
+                flakiness: (h % 15),
+                confidence: 85 + (h % 15),
+                steps: [
+                    'Initialize map layer',
+                    `Prepare ${scenario.category} test environment`,
+                    'Perform interaction: ' + scenario.name,
+                    'Wait for state synchronization'
+                ],
+                expected: 'System state should remain consistent and performant.',
+                actual: status === 'Pass'
+                    ? 'State synchronized successfully.'
+                    : `Detected inconsistency in ${scenario.category} layer. Expected response within 200ms, got ${400 + (h % 1000)}ms.`,
+                screenshots: [
+                    `https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=300&h=200`,
+                    `https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&q=80&w=300&h=200`
+                ],
+                diagnosis: status === 'Pass' ? 'No issues found.' : `AI detected a potential race condition in the ${story.components[h % story.components.length]}.`,
+                rationale: `Pattern analysis suggests that rapid ${scenario.category} triggers may lead to stale state in high-concurrency environments.`
+            };
+        });
 
     const failedScenarios = results.filter(r => r.status === 'Fail');
 

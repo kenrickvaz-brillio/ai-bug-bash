@@ -7,6 +7,7 @@ export interface TestScenario {
     name: string;
     description: string;
     category: string;
+    storyId?: string; // Links scenario to a specific story
 }
 
 export interface TestResult {

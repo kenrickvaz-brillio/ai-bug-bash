@@ -38,7 +38,26 @@ export const OTHER_STORIES: Story[] = [
         title: 'Saved Search Alerts',
         description: 'Users can save searches and receive push/email notifications when new results match their criteria.',
         value: 'Retention: Increases user engagement by bringing them back when relevant new items appear.',
-        acceptanceCriteria: [], components: [], risks: []
+        acceptanceCriteria: [
+            'User can name and save current search filters',
+            'Notifications delivered within 5 minutes of new match',
+            'Email contains correct deep links to results',
+            'User can manage/unsubscribe from alerts in settings',
+            'High-volume searches are debounced to prevent spam'
+        ],
+        components: [
+            'Notification Service',
+            'Search Indexer',
+            'User Preferences DB',
+            'Email Gateway',
+            'Push Notification Lambda'
+        ],
+        risks: [
+            'Email delivery latency / throttling',
+            'Spam bucket classification',
+            'Database write contention on high traffic',
+            'Privacy / PII leakage in notifications'
+        ]
     },
     {
         id: 'appointment-scheduling',
@@ -66,45 +85,88 @@ export const OTHER_STORIES: Story[] = [
 export const TEST_SCENARIOS: TestScenario[] = [
     {
         id: 'ts-1',
+        storyId: 'map-list-sync',
         category: 'Functionality',
         name: 'Draw area updates results',
         description: 'Verify that drawing a polygon on the map triggers a search update within 2s.'
     },
     {
         id: 'ts-2',
+        storyId: 'map-list-sync',
         category: 'Functionality',
         name: 'Pin ↔ list sync',
         description: 'Verify selecting a map pin scrolls to and highlights the list item.'
     },
     {
         id: 'ts-3',
+        storyId: 'map-list-sync',
         category: 'Stability',
         name: 'Rapid pan/zoom ghost items',
         description: 'Stress test map movement to ensure no stale results disappear or linger.'
     },
     {
         id: 'ts-4',
+        storyId: 'map-list-sync',
         category: 'State',
         name: 'Filters preserve draw area',
         description: 'Ensure changing a price filter does not clear the polygon search area.'
     },
     {
         id: 'ts-5',
+        storyId: 'map-list-sync',
         category: 'Performance',
         name: 'Slow network mode',
         description: 'Verify loading states and race condition handling under high latency.'
     },
     {
         id: 'ts-6',
+        storyId: 'map-list-sync',
         category: 'Mobile',
         name: 'Mobile pan stability',
         description: 'Verify map pan interactions do not freeze the UI thread on mobile viewports.'
     },
     {
         id: 'ts-7',
+        storyId: 'map-list-sync',
         category: 'Accessibility',
         name: 'Keyboard navigation',
         description: 'Verify focus can move from map markers to list items via Tab key.'
+    },
+    // Saved Search Scenarios
+    {
+        id: 'ss-1',
+        storyId: 'saved-search-alerts',
+        category: 'Functionality',
+        name: 'Save Search w/ Name',
+        description: 'Verify user can save current filters with a custom name.'
+    },
+    {
+        id: 'ss-2',
+        storyId: 'saved-search-alerts',
+        category: 'Performance',
+        name: 'Alert Latency < 5min',
+        description: 'Ensure notifications are dispatched within SLA after new item indexed.'
+    },
+    {
+        id: 'ss-3',
+        storyId: 'saved-search-alerts',
+        category: 'Security',
+        name: 'Unsubscribe Token Valid',
+        description: 'Verify one-click unsubscribe token works without login.'
+    },
+    {
+        id: 'ss-4',
+        storyId: 'saved-search-alerts',
+        category: 'Functionality',
+        name: 'Duplicate Alert Prevention',
+        description: 'Ensure exact duplicate criteria cannot be saved twice.'
+    },
+    {
+        id: 'ss-5',
+        storyId: 'saved-search-alerts',
+        category: 'Reliability',
+        name: 'Email Delivery Retry',
+        description: 'Verify system retries email delivery on soft bounce.'
     }
 ];
 
